@@ -1,0 +1,197 @@
+#ifndef INC_SURFACE_H
+#define INC_SURFACE_H
+
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+#include "SDL/SDL_ttf.h"
+
+class SurfaceManager
+{
+private:
+    int screen_bpp_;
+    int screen_width_;
+    int screen_height_;
+    Uint32 screen_flag_;
+    int font_size_;
+    int font_line_spacing_;
+    SDL_Surface *screen_;
+    SDL_Surface *terrain_tileset_;
+    SDL_Surface *player_tileset_;
+    SDL_Surface *flora_tileset_;
+    SDL_Surface *weapons_tileset_;
+    SDL_Surface *mobs_tileset_;
+    SDL_Surface *blocks_tileset_;
+    SDL_Surface *effects_tileset_;
+    TTF_Font *font_;
+public:
+    SurfaceManager () {
+        screen_bpp_ =               32;
+        screen_width_ =             0;
+        screen_height_ =            640;
+        screen_flag_ =              SDL_HWSURFACE;
+        font_size_ =                16;
+        font_line_spacing_ =		font_size_/4;
+        font_ =                     TTF_OpenFont ( "manaspace.ttf", font_size_);
+    }
+    int get_screen_bpp () {
+        return screen_bpp_;
+    }
+    void set_screen_bpp ( int screen_bpp ) {
+        screen_bpp_ = screen_bpp;
+    }
+    int get_screen_width () {
+        return screen_width_;
+    }
+    void set_screen_width ( int screen_width ) {
+        screen_width_ = screen_width;
+    }
+    int get_screen_height () {
+        return screen_height_;
+    }
+    void set_screen_height ( int screen_height ) {
+        screen_height_ = screen_height;
+    }
+    Uint32 get_screen_flag () {
+        return screen_flag_;
+    }
+    void set_screen_flag ( Uint32 screen_flag ) {
+        screen_flag_ = screen_flag;
+    }
+    int get_font_size () {
+        return font_size_;
+    }
+    void set_font_size ( int font_size ) {
+        font_size_ = font_size;
+    }
+    int get_font_line_spacing () {
+        return font_line_spacing_;
+    }
+    void set_font_line_spacing ( int font_line_spacing ) {
+        font_line_spacing_ = font_line_spacing;
+    }
+    SDL_Surface* get_screen () {
+        return screen_;
+    }
+    void set_screen ( SDL_Surface *screen ) {
+        screen_ = screen;
+    }
+    SDL_Surface* get_terrain_tileset () {
+        return terrain_tileset_;
+    }
+    void set_terrain_tileset ( SDL_Surface *terrain_tileset ) {
+        terrain_tileset_ = terrain_tileset;
+    }
+    SDL_Surface* get_flora_tileset () {
+        return flora_tileset_;
+    }
+    void set_flora_tileset ( SDL_Surface *flora_tileset ) {
+        flora_tileset_ = flora_tileset;
+    }
+    SDL_Surface* get_player_tileset () {
+        return player_tileset_;
+    }
+    void set_player_tileset ( SDL_Surface *player_tileset ) {
+        player_tileset_ = player_tileset;
+    }
+    SDL_Surface* get_weapons_tileset () {
+        return weapons_tileset_;
+    }
+    void set_weapons_tileset ( SDL_Surface *weapons_tileset ) {
+        weapons_tileset_ = weapons_tileset;
+    }
+    SDL_Surface* get_mobs_tileset () {
+        return mobs_tileset_;
+    }
+    void set_mobs_tileset ( SDL_Surface *mobs_tileset ) {
+        mobs_tileset_ = mobs_tileset;
+    }
+    SDL_Surface* get_blocks_tileset () {
+        return blocks_tileset_;
+    }
+    void set_blocks_tileset ( SDL_Surface *blocks_tileset ) {
+        blocks_tileset_ = blocks_tileset;
+    }
+    SDL_Surface* get_effects_tileset () {
+        return effects_tileset_;
+    }
+    TTF_Font* get_font () {
+        return font_;
+    }
+    void set_font ( TTF_Font *font ) {
+        font_ = font;
+    }
+    void Init () {
+
+        printf("Initializing surface manager...\n");
+        printf("- Setting video mode...\n");
+
+        screen_ = SDL_SetVideoMode(screen_width_, screen_height_, screen_bpp_, screen_flag_);
+        if ( screen_ == NULL) printf("   - Error: Could not set video mode. Game window could not be created.\n");
+        else {
+            printf("   - Video mode set. Game window with dimensions %dx%d created.\n",
+                   screen_width_, screen_height_);
+        }
+        printf("- Checking tilesets...\n");
+        SDL_Surface * temp = IMG_Load("art/terrain.png");
+        terrain_tileset_ = SDL_DisplayFormatAlpha(temp);
+        temp = IMG_Load("art/player.png");
+        player_tileset_ = SDL_DisplayFormatAlpha(temp);
+        temp = IMG_Load("art/flora.png");
+        flora_tileset_ = SDL_DisplayFormatAlpha(temp);
+        temp = IMG_Load("art/weapons.png");
+        weapons_tileset_ = SDL_DisplayFormatAlpha(temp);
+        temp = IMG_Load("art/mobs.png");
+        mobs_tileset_ = SDL_DisplayFormatAlpha(temp);
+        temp = IMG_Load("art/blocks.png");
+        blocks_tileset_ = SDL_DisplayFormatAlpha(temp);
+        temp = IMG_Load("art/effects.png");
+        effects_tileset_ = SDL_DisplayFormatAlpha(temp);
+        SDL_FreeSurface(temp);
+        if (terrain_tileset_ == NULL ) printf("   - Error: Could not load terrain tileset.\n");
+        else {
+            printf("   - Terrain tileset loaded.\n");
+        }
+        if (flora_tileset_ == NULL ) printf("   - Error: Could not load flora tileset.\n");
+        else {
+            printf("   - Flora tileset loaded.\n");
+        }
+        if (player_tileset_ == NULL ) printf("   - Error: Could not load player tileset.\n");
+        else {
+            printf("   - Player tileset loaded.\n");
+        }
+        if (weapons_tileset_ == NULL ) printf("   - Error: Could not load weapons tileset.\n");
+        else {
+            printf("   - Weapons tileset loaded.\n");
+        }
+        if (mobs_tileset_ == NULL ) printf("   - Error: Could not load mobs tileset.\n");
+        else {
+            printf("   - Mobs tileset loaded.\n");
+        }
+        if (blocks_tileset_ == NULL ) printf("   - Error: Could not load blocks tileset.\n");
+        else {
+            printf("   - Blocks tileset loaded.\n");
+        }
+        if (effects_tileset_ == NULL ) printf("   - Error: Could not load effects tileset.\n");
+        else {
+            printf("   - Effects tileset loaded.\n");
+        }
+        printf("- Checking font...\n");
+        if (font_ == NULL) printf("   - Error: Could not load font.\n");
+        else {
+            printf("   - Font loaded.\n");
+        }
+    }
+    void Quit () {
+        SDL_FreeSurface(terrain_tileset_);
+        SDL_FreeSurface(flora_tileset_);
+        SDL_FreeSurface(player_tileset_);
+        SDL_FreeSurface(weapons_tileset_);
+        SDL_FreeSurface(mobs_tileset_);
+        SDL_FreeSurface(blocks_tileset_);
+        SDL_FreeSurface(effects_tileset_);
+        SDL_FreeSurface(screen_);
+        printf("All surface manager surfaces released.\n");
+    }
+};
+
+#endif

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="2dpcrpg-cb" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/2dpcrpg-cb" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-lSDL -lSDL_image -lSDL_ttf -lSDL_mixer -ltinyxml" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/2dpcrpg-cb" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lSDL -lSDL_image -lSDL_ttf" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="attributes.h" />
+		<Unit filename="character.png" />
+		<Unit filename="effect.h" />
+		<Unit filename="engine.cpp" />
+		<Unit filename="engine.h" />
+		<Unit filename="game.cpp">
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="interface.cpp" />
+		<Unit filename="interface.h" />
+		<Unit filename="manaspace.ttf" />
+		<Unit filename="map.cpp" />
+		<Unit filename="map.h" />
+		<Unit filename="objects.cpp" />
+		<Unit filename="objects.h" />
+		<Unit filename="rapidxml-1.13/rapidxml.hpp" />
+		<Unit filename="surface.cpp" />
+		<Unit filename="surface.h" />
+		<Unit filename="terrain.png" />
+		<Unit filename="thing.cpp" />
+		<Unit filename="thing.h" />
+		<Unit filename="thing.png" />
+		<Unit filename="tile.cpp" />
+		<Unit filename="tile.h" />
+		<Unit filename="unit.cpp" />
+		<Unit filename="unit.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
